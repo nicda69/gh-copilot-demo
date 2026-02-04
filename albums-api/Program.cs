@@ -1,3 +1,7 @@
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("AlbumsApi.Tests")]
+
 var builder = WebApplication.CreateBuilder(args);
 
 var DefaultHttpPort = Environment.GetEnvironmentVariable("DAPR_HTTP_PORT") ?? "3500";
@@ -49,3 +53,5 @@ app.MapGet("/", async context =>
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

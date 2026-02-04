@@ -21,6 +21,9 @@ export async function generateLineChart(jsonPath: string, width: number = 800, h
     }
     const data: SalesData[] = await response.json();
 
+    // Sort data by month to ensure correct line chart
+    data.sort((a, b) => a.month - b.month);
+
     // create the svg
     const svg = d3.create('svg')
       .attr('width', width)
@@ -92,7 +95,7 @@ export async function generateLineChart(jsonPath: string, width: number = 800, h
       .attr('text-anchor', 'middle')
       .text('Number of Albums Sold');
 
-    return svg.node()?.outerHTML || '';
+    return new XMLSerializer().serializeToString(svg.node()!);
   } catch (error) {
     console.error('Error generating line chart:', error);
     throw error;
