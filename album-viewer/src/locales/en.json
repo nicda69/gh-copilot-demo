@@ -1,0 +1,25 @@
+{
+  "header": {
+    "title": "🎵 Album Collection",
+    "subtitle": "Discover amazing music albums"
+  },
+  "loading": {
+    "albums": "Loading albums...",
+    "chart": "Loading chart..."
+  },
+  "error": {
+    "albums": "Failed to load albums. Please make sure the API is running.",
+    "chart": "Failed to load chart",
+    "retry": "Try Again"
+  },
+  "album": {
+    "addToCart": "Add to Cart",
+    "preview": "Preview"
+  },
+  "chart": {
+    "title": "Album Sales Chart"
+  },
+  "language": {
+    "select": "Select Language"
+  }
+}

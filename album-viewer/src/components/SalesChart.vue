@@ -1,7 +1,7 @@
 <template>
   <div class="sales-chart">
-    <h2>Album Sales Chart</h2>
-    <div v-if="loading">Loading chart...</div>
+    <h2>{{ $t('chart.title') }}</h2>
+    <div v-if="loading">{{ $t('loading.chart') }}</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else v-html="chartSvg"></div>
   </div>
@@ -9,7 +9,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { generateLineChart } from '@/utils/viz';
+
+const { t } = useI18n()
 
 const chartSvg = ref('');
 const loading = ref(true);
@@ -23,7 +26,7 @@ onMounted(async () => {
     const svg = await generateLineChart(url);
     chartSvg.value = svg;
   } catch (err) {
-    error.value = 'Failed to load chart';
+    error.value = t('error.chart');
     console.error('Chart error:', err);
   } finally {
     loading.value = false;

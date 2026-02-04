@@ -1,19 +1,24 @@
 <template>
   <div class="app">
     <header class="header">
-      <h1>🎵 Album Collection</h1>
-      <p>Discover amazing music albums</p>
+      <div class="header-content">
+        <div>
+          <h1>{{ $t('header.title') }}</h1>
+          <p>{{ $t('header.subtitle') }}</p>
+        </div>
+        <LanguageSelector />
+      </div>
     </header>
 
     <main class="main">
       <div v-if="loading" class="loading">
         <div class="spinner"></div>
-        <p>Loading albums...</p>
+        <p>{{ $t('loading.albums') }}</p>
       </div>
 
       <div v-else-if="error" class="error">
         <p>{{ error }}</p>
-        <button @click="fetchAlbums" class="retry-btn">Try Again</button>
+        <button @click="fetchAlbums" class="retry-btn">{{ $t('error.retry') }}</button>
       </div>
 
       <div v-else class="albums-grid">
@@ -34,6 +39,7 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import AlbumCard from './components/AlbumCard.vue'
 import SalesChart from './components/SalesChart.vue'
+import LanguageSelector from './components/LanguageSelector.vue'
 import type { Album } from './types/album'
 
 const albums = ref<Album[]>([])
@@ -47,7 +53,7 @@ const fetchAlbums = async (): Promise<void> => {
     const response = await axios.get<Album[]>('/albums')
     albums.value = response.data
   } catch (err) {
-    error.value = 'Failed to load albums. Please make sure the API is running.'
+    error.value = $t('error.albums')
     console.error('Error fetching albums:', err)
   } finally {
     loading.value = false
@@ -66,9 +72,20 @@ onMounted(() => {
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header h1 {

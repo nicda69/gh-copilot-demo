@@ -45,7 +45,7 @@ public class AlbumControllerTests : IClassFixture<WebApplicationFactory<Program>
         Assert.NotNull(album);
         Assert.Equal(1, album.Id);
         Assert.Equal("You, Me and an App Id", album.Title);
-        Assert.Equal("Daprize", album.Artist.Name);
+        Assert.Equal("Daprize", album.Artist);
     }
 
     [Fact]

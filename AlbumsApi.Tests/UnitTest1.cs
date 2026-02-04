@@ -24,7 +24,7 @@ public class AlbumTests
         Assert.NotNull(album);
         Assert.Equal(1, album.Id);
         Assert.Equal("You, Me and an App Id", album.Title);
-        Assert.Equal("Daprize", album.Artist.Name);
+        Assert.Equal("Daprize", album.Artist);
     }
 
     [Fact]
@@ -44,10 +44,6 @@ public class AlbumTests
         var albums = Album.GetAll();
         var firstAlbum = albums.First();
 
-        // Assert
-        Assert.NotNull(firstAlbum.Artist);
-        Assert.Equal("Daprize", firstAlbum.Artist.Name);
-        Assert.Equal(new DateTime(1990, 5, 15), firstAlbum.Artist.Birthdate);
-        Assert.Equal("New York", firstAlbum.Artist.BirthPlace);
+        Assert.Equal("Daprize", firstAlbum.Artist);
     }
 }

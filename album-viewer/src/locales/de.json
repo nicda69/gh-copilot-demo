@@ -1,0 +1,25 @@
+{
+  "header": {
+    "title": "🎵 Album-Sammlung",
+    "subtitle": "Entdecken Sie fantastische Musik-Alben"
+  },
+  "loading": {
+    "albums": "Alben werden geladen...",
+    "chart": "Diagramm wird geladen..."
+  },
+  "error": {
+    "albums": "Fehler beim Laden der Alben. Bitte stellen Sie sicher, dass die API läuft.",
+    "chart": "Fehler beim Laden des Diagramms",
+    "retry": "Erneut versuchen"
+  },
+  "album": {
+    "addToCart": "In den Warenkorb",
+    "preview": "Vorschau"
+  },
+  "chart": {
+    "title": "Album-Verkaufsdiagramm"
+  },
+  "language": {
+    "select": "Sprache auswählen"
+  }
+}

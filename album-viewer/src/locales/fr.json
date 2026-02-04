@@ -1,0 +1,25 @@
+{
+  "header": {
+    "title": "🎵 Collection d'Albums",
+    "subtitle": "Découvrez des albums de musique incroyables"
+  },
+  "loading": {
+    "albums": "Chargement des albums...",
+    "chart": "Chargement du graphique..."
+  },
+  "error": {
+    "albums": "Échec du chargement des albums. Veuillez vous assurer que l'API fonctionne.",
+    "chart": "Échec du chargement du graphique",
+    "retry": "Réessayer"
+  },
+  "album": {
+    "addToCart": "Ajouter au Panier",
+    "preview": "Aperçu"
+  },
+  "chart": {
+    "title": "Graphique des Ventes d'Albums"
+  },
+  "language": {
+    "select": "Sélectionner la Langue"
+  }
+}
