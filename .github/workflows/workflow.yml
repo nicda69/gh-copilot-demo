@@ -1,0 +1,63 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Build API
+      run: dotnet build albums-api/albums-api.csproj
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: album-viewer/package-lock.json
+
+    - name: Install dependencies
+      run: |
+        cd album-viewer
+        npm ci
+
+    - name: Run tests
+      run: |
+        cd album-viewer
+        npm test -- --run
+
+    - name: Build frontend
+      run: |
+        cd album-viewer
+        npm run build
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Log in to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/albums-api:${{ github.sha }} ./albums-api
+        docker push ${{ secrets.ACR_LOGIN_SERVER }}/albums-api:${{ github.sha }}

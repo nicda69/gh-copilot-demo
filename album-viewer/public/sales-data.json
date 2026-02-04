@@ -1,0 +1,14 @@
+[
+  { "month": 1, "sold": 100 },
+  { "month": 2, "sold": 150 },
+  { "month": 3, "sold": 200 },
+  { "month": 4, "sold": 180 },
+  { "month": 5, "sold": 220 },
+  { "month": 6, "sold": 250 },
+  { "month": 7, "sold": 300 },
+  { "month": 8, "sold": 280 },
+  { "month": 9, "sold": 260 },
+  { "month": 10, "sold": 320 },
+  { "month": 11, "sold": 350 },
+  { "month": 12, "sold": 400 }
+]

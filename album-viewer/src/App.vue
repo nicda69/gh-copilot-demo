@@ -23,6 +23,8 @@
           :album="album" 
         />
       </div>
+
+      <SalesChart />
     </main>
   </div>
 </template>
@@ -31,6 +33,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import AlbumCard from './components/AlbumCard.vue'
+import SalesChart from './components/SalesChart.vue'
 import type { Album } from './types/album'
 
 const albums = ref<Album[]>([])
